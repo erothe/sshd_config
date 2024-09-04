@@ -39,6 +39,11 @@ PasswordAuthentication no
 Protocol 2
 ```
 
+## Installation
+
+1. copy the file `sshd_config.conf` into the directory `/etc/ssh/sshd_config.d`.
+2. restart the service sshd with `systemctl restart sshd`
+
 ## Caveats
 
 * I use a non standard port number for service `ssh` (keyword: `Port`) and I
