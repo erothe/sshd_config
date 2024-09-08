@@ -7,8 +7,9 @@ contribute to my home server security.
 
 ## Configuration
 ```bash
-# Sets the port number to something
-# different from the standard 22 port
+# Sets the port number to something different from the standard 22 port.
+# Remember that the maximum port number allowed is 65535 which is 2^16.
+# This limit exists because the TCP packet limits the port to a 16-bit value.
 Port some-random-integer
 
 # Forbids root login
