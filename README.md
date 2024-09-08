@@ -45,10 +45,26 @@ Protocol 2
 1. copy the file `sshd_config.conf` into the directory `/etc/ssh/sshd_config.d`.
 2. restart the service sshd with `systemctl restart sshd`
 
+## SELinux
+
+On systems having SELinux, do not forget to allow an exception for the new port number.
+```bash
+semanage port -a -t ssh_port_t -p tcp <port-number>
+semanage port -l | grep ssh
+```
+
+And then, that same port must also be allowed by the firewall. On systems using firewalld
+```bash
+firewall-cmd --permanent --del-port=<port-number>/tcp
+firewall-cmd --reload
+firewall-cmd --list-ports
+```
+
 ## Caveats
 
 * I use a non standard port number for service `ssh` (keyword: `Port`) and I
-  only allow a small number of users to access remotely the server (keyword: `AllowUsers`). For security reasons, I do not publish my personal data. 
+  only allow a small number of users to access remotely the server (keyword: `AllowUsers`).
+  For security reasons, I do not publish my personal data. 
 
 * You can use variants of the bellow command to validate that `sshd` is reading
   the configuration as expected.
